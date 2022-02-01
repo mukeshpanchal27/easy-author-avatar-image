@@ -1,0 +1,1 @@
+# easy-author-avatar-image
