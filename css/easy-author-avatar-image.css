@@ -29,3 +29,11 @@
   line-height: 1.3;
   vertical-align: middle;
 }
+
+.easy-author-avatar-image-hide {
+  display: none !important;
+}
+
+.easy-author-avatar-img {
+  margin-bottom: 10px;
+}
