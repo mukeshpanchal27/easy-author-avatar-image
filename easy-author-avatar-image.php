@@ -111,11 +111,9 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 				$button_class = '';
 				if ( ! $avatar_url ) {
-					//$button_attribute = 'style = "display:block"';
 					$button_class = ' easy-author-avatar-image-hide';
-				} else {
-					//$button_attribute = 'style = "display:none"';
-				} ?>
+				}
+				?>
 
 				<div class="easy-author-avatar-image-upload-wrap">
 					<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset($avatar) ? $avatar : ''; ?>">

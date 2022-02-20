@@ -1,39 +1,35 @@
 #easy_author_avatar_image_delete_btn {
-  margin-left: 5px;
-}
-
-.form-table .user-profile-picture {
-  display: none;
+	margin-left: 5px;
 }
 
 .easy-author-avatar-image-form-table {
-  border-collapse: collapse;
-  font-size: 14px;
-  margin-top: 0.5em;
-  width: 100%;
-  clear: both;
+	border-collapse: collapse;
+	font-size: 14px;
+	margin-top: 0.5em;
+	width: 100%;
+	clear: both;
 }
 
 .easy-author-avatar-image-form-table th {
-  vertical-align: top;
-  text-align: left;
-  padding: 20px 10px 20px 0;
-  width: 200px;
-  line-height: 1.3;
-  font-weight: 600;
+	vertical-align: top;
+	text-align: left;
+	padding: 20px 10px 20px 0;
+	width: 200px;
+	line-height: 1.3;
+	font-weight: 600;
 }
 
 .easy-author-avatar-image-form-table td {
-  margin-bottom: 9px;
-  padding: 15px 10px;
-  line-height: 1.3;
-  vertical-align: middle;
+	margin-bottom: 9px;
+	padding: 15px 10px;
+	line-height: 1.3;
+	vertical-align: middle;
 }
 
-.easy-author-avatar-image-hide {
-  display: none !important;
+.easy-author-avatar-image-hide, .form-table .user-profile-picture {
+	display: none !important;
 }
 
 .easy-author-avatar-img {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
