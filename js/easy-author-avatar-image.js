@@ -29,7 +29,7 @@
 			img.removeClass( 'easy-author-avatar-image-hide' );
 			deleteBtn.removeClass( 'easy-author-avatar-image-hide' );
 			attachment = uploader.state().get( 'selection' ).first().toJSON();
-			currentThis.text( easy_author_avatar_image.change_button_text );
+			currentThis.text( easy_author_avatar_image._change_button_text );
 			currentThisParent.find( img ).attr( 'src', attachment.url );
 			currentThisParent.find( inputId ).attr( 'value', attachment.id );
 		});
@@ -49,7 +49,7 @@
 
 		if ( confirm_answer ) {
 
-			currentThisParent.find( uploadBtn ).text( easy_author_avatar_image.upload_button_text );
+			currentThisParent.find( uploadBtn ).text( easy_author_avatar_image._upload_button_text );
 			currentThisParent.find( img ).attr( 'src', '' );
 			currentThisParent.find( inputId ).attr( 'value', '' );
 			deleteBtn.addClass( 'easy-author-avatar-image-hide' );
