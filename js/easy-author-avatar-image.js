@@ -18,6 +18,9 @@
 
 		uploader = wp.media.frames.file_frame = wp.media({
 			title: easy_author_avatar_image._media_title,
+			library: {
+				type: 'image'
+			},
 			button: {
 				text: easy_author_avatar_image._media_button_title
 			},
