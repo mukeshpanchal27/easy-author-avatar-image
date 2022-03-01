@@ -1,6 +1,6 @@
 === Easy Author Avatar Image ===
 Contributors: mukesh27, dhavalpanchal
-Tags: author image, profile, avatar
+Tags: avatar, user profile, gravatar,custom profile photo, custom profile picture, profile photo, profile picture, author image, author photo
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Requires at least: 5.6
 Tested up to: 5.9
@@ -17,6 +17,16 @@ Easy Author Avatar Image gives you the option do you exactly that -- easily add 
 
 Whether you call it an avatar, an author image, or an author picture, Easy Author Avatar Image is a "Works Out Of The Box" solution to a common problem.
 
+= What's Next =
+
+If you find this plugin useful , please leave a good rating and consider checking out my other plugins:
+
+* <a href="https://wordpress.org/plugins/enhanced-comment-validation/" rel="friend" title="Enhanced Comment Validation">Enhanced Comment Validation</a> - Setup a comment validation for comment form.
+
+* <a href="https://wordpress.org/plugins/easy-maintenance-mode-by-wpkoder/" rel="friend" title="Easy Maintenance Mode">Easy Maintenance Mode</a> - Setup a Maintenance Mode for your website.
+
+* <a href="https://wordpress.org/plugins/landing-page-for-wc-categories-tags/" rel="friend" title="Landing page for WC Archive Pages">Landing page for WC Archive Pages</a> - allow you to add Rich text for your WooCommerce archive( Shop, Product Category, Product Tags ) pages.
+
 == Installation ==
 
 1. Download the plugin from the plugin directory. 
@@ -24,7 +34,8 @@ Whether you call it an avatar, an author image, or an author picture, Easy Autho
 3. Click on Upload.
 4. Find the file you downloaded (easy-author-avatar-image.zip) and upload it.
 5. Activate the plugin through the 'Plugins' menu in WordPress
-6. Go to Users->Your Profile and get started! If you have multiple users, they all can log in and upload an image, too. 
+6. Go to Easy Author Avatar Image Settings and Enable Profile Section.
+7. Go to Users->Your Profile and get started! If you have multiple users, they all can log in and upload an image, too. 
 
 == Frequently Asked Questions ==
 
@@ -48,6 +59,12 @@ Please use [the issue tracker on Enhanced Comment Validation's GitHub repo](http
 [I am accepting donation](https://www.paypal.com/paypalme/mukeshpanchal27) and any support you can give will help me maintain this plugin and keep it free for everyone.
 
 In addition, if you like the plugin then I'd love for you to leave a review. Tell all your friends about it too!
+
+== Screenshots ==
+
+1. Settings
+2. Edit Profile Settings
+3. Upload Custom Avatar Image
 
 == Changelog ==
 
