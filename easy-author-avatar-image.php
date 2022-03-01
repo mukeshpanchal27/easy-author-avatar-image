@@ -59,7 +59,8 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 				__( 'Easy Author Avatar Image Settings', 'easy-author-avatar-image' ),
 				'manage_options',
 				'easy-author-avatar-image',
-				array( $this, 'easy_author_avatar_image_page_callback' )
+				array( $this, 'easy_author_avatar_image_page_callback' ),
+				'dashicons-businessman'
 			);
 		}
 
