@@ -17,13 +17,13 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			$this->plugin_name = 'easy-author-avatar-image';
 			$this->version = '1.0';
 			register_setting( 'easy_author_avatar_image_settings', 'easy_author_avatar_image_option' );
-			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles_scripts' ] );
-			add_action( 'show_user_profile', [ $this, 'admin_author_img_upload' ] );
-			add_action( 'edit_user_profile', [ $this, 'admin_author_img_upload' ] );
-			add_action( 'personal_options_update', [ $this, 'author_save_custom_img' ] );
-			add_action( 'edit_user_profile_update', [ $this, 'author_save_custom_img' ] );
-			add_filter( 'get_avatar', [ $this, 'get_easy_author_image' ], 10, 5 );
-			add_action( 'admin_menu', [ $this, 'admin_menu_page' ] );
+			add_action( 'admin_enqueue_scripts',    [ $this, 'enqueue_styles_scripts'  ]  );
+			add_action( 'show_user_profile',        [ $this, 'admin_author_img_upload' ]  );
+			add_action( 'edit_user_profile',        [ $this, 'admin_author_img_upload' ]  );
+			add_action( 'personal_options_update',  [ $this, 'author_save_custom_img'  ]  );
+			add_action( 'edit_user_profile_update', [ $this, 'author_save_custom_img'  ]  );
+			add_filter( 'get_avatar',               [ $this, 'get_easy_author_image'   ], 10, 5 );
+			add_action( 'admin_menu',               [ $this, 'admin_menu_page'         ]  );
 		}
 
 		public function enqueue_styles_scripts() {
@@ -33,21 +33,18 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 			if ( $easy_author_avatar_image_option_set ) {
 				wp_enqueue_style( $this->plugin_name, plugin_dir_url(__FILE__) . 'css/easy-author-avatar-image.css', array(), $this->version, 'all' );
-			
-
 				wp_enqueue_media();
-
 				wp_enqueue_script( $this->plugin_name, plugin_dir_url(__FILE__) . 'js/easy-author-avatar-image.js', array( 'jquery' ), $this->version, false );
-				
+
 				wp_localize_script(
 					$this->plugin_name,
 					'easy_author_avatar_image',
 					array(
-						'_media_title' => __( 'Choose Image: Default Avatar', 'easy-author-avatar-image' ),
-						'_media_button_title' => __( 'Select', 'easy-author-avatar-image' ),
+						'_media_title'           => __( 'Choose Image: Default Avatar', 'easy-author-avatar-image' ),
+						'_media_button_title'    => __( 'Select', 'easy-author-avatar-image' ),
 						'_delete_button_conform' => __( 'Are You Sure To Remove Profile Image', 'easy-author-avatar-image' ),
-						'_upload_button_text' => __( 'Upload New Profile Picture', 'easy-author-avatar-image' ),
-						'_change_button_text' => __( 'Change Profile Picture', 'easy-author-avatar-image' ),
+						'_upload_button_text'    => __( 'Upload New Profile Picture', 'easy-author-avatar-image' ),
+						'_change_button_text'    => __( 'Change Profile Picture', 'easy-author-avatar-image' ),
 					)
 				);
 			}
@@ -69,31 +66,31 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			<?php
 				settings_fields( 'easy_author_avatar_image_settings' );
 				$easy_author_avatar_image_option = get_option( 'easy_author_avatar_image_option' );
-			?>    
-			<table class="form-table">
-				<tbody>
-					<tr>
-						<th scope="row">
-							<label for="easy-author-avatar-image-lable"><?php _e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
-						</th>
-						<td>
-							<fieldset>
-								<legend class="screen-reader-text">
-									<span>
-										<?php _e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?>
-									</span>
-								</legend>
-								<label for="easy_author_avatar_image_option">
-									<input name="easy_author_avatar_image_option[_enable]" id="easy_author_avatar_image_option" type="checkbox" value="yes" <?php echo ( isset( $easy_author_avatar_image_option['_enable'] ) && ( 'yes' == $easy_author_avatar_image_option['_enable'] ) ) ? ' checked="checked"' : ''; ?> />
-									<?php _e( 'Enable Profile Section', 'easy-author-avatar-image' ); ?>
-								</label>
-							</fieldset>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<?php submit_button( __( 'Save Changes', 'easy-author-avatar-image' ) ); ?>
-		</form>
+			?>
+				<table class="form-table">
+					<tbody>
+						<tr>
+							<th scope="row">
+								<label for="easy-author-avatar-image-lable"><?php _e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
+							</th>
+							<td>
+								<fieldset>
+									<legend class="screen-reader-text">
+										<span>
+											<?php _e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?>
+										</span>
+									</legend>
+									<label for="easy_author_avatar_image_option">
+										<input name="easy_author_avatar_image_option[_enable]" id="easy_author_avatar_image_option" type="checkbox" value="yes" <?php echo ( isset( $easy_author_avatar_image_option['_enable'] ) && ( 'yes' == $easy_author_avatar_image_option['_enable'] ) ) ? ' checked="checked"' : ''; ?> />
+										<?php _e( 'Enable Profile Section', 'easy-author-avatar-image' ); ?>
+									</label>
+								</fieldset>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<?php submit_button( __( 'Save Changes', 'easy-author-avatar-image' ) ); ?>
+			</form>
 		<?php
 		}
 
@@ -103,15 +100,10 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			$easy_author_avatar_image_option_set = isset( $easy_author_avatar_image_option ) ? $easy_author_avatar_image_option : '';
 
 			if( $easy_author_avatar_image_option_set ) {
-				$avatar = get_user_meta( $user->ID, 'easy-author-avatar-profile-image', true );
-				$avatar_url = wp_get_attachment_image_url( $avatar );
-
-				$button_class = '';
-				if ( ! $avatar_url ) {
-					$button_class = ' easy-author-avatar-image-hide';
-				}
-				?>
-
+				$avatar       = get_user_meta( $user->ID, 'easy-author-avatar-profile-image', true );
+				$avatar_url   = wp_get_attachment_image_url( $avatar );
+				$button_class = ( ! $avatar_url ) ? ' easy-author-avatar-image-hide': "";
+		?>
 				<div class="easy-author-avatar-image-upload-wrap">
 					<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset( $avatar ) ? esc_attr( $avatar ) : ''; ?>">
 					<h3><?php _e('Easy Author Avatar Image', 'easy-author-avatar-image') ?></h3>
@@ -161,11 +153,9 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			if ( is_numeric( $id_or_email ) ) {
 				$id = (int) $id_or_email;
 				$user = get_user_by( 'id', $id );
-			} elseif ( is_object( $id_or_email ) ) {
-				if ( !empty( $id_or_email->user_id ) ) {
+			} elseif ( is_object( $id_or_email ) && !empty( $id_or_email->user_id ) ) {
 					$id = (int) $id_or_email->user_id;
 					$user = get_user_by( 'id', $id );
-				}
 			} else {
 				$user = get_user_by( 'email', $id_or_email );
 			}
