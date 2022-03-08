@@ -69,8 +69,8 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 == Changelog ==
 = 1.1 =
 * Added: Added compatibility for latest WordPress version of 5.9.1
-* Fixed: Allow only image in Media selection
-* Fixed: Optimize some codes
+* Fixed: Allow only image in Media selection. Props @ravipatel.
+* Fixed: Optimize some codes.
 
 = 1.0 =
 * Initial release.
