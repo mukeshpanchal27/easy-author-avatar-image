@@ -1,9 +1,6 @@
 (function ($) {
 	'use strict';
 
-	var a = $('#wpwrap').parents().find('.user-profile-picture').hide();
-
-
 	var uploader;
 	$(document).on('click', '.easy-author-avatar-image-upload', function () {
 
@@ -45,7 +42,7 @@
 
 	$(document).on('click', '.easy-author-avatar-image-remove', function () {
 
-		var confirm_answer = confirm(easy_author_avatar_image._delete_button_conform),
+		var confirm_answer = confirm( easy_author_avatar_image._delete_button_conform ),
 			defaultImageUrl = easy_author_avatar_image._default_image_url,
 
 			currentThis = $(this),
