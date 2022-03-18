@@ -1,11 +1,11 @@
 === Easy Author Avatar Image ===
 Contributors: mukesh27, dhavalpanchal
-Tags: avatar, user profile, gravatar,custom profile photo, custom profile picture, profile photo, profile picture, author image, author photo
+Tags: avatar, user profile, gravatar, custom profile photo, custom profile picture, profile photo, profile picture, author image, author photo
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Requires at least: 5.6
 Tested up to: 5.9
 Requires PHP: 7.0
-Stable tag: 1.0
+Stable tag: 1.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -13,13 +13,13 @@ Upload an author image right from your profile page with the click of a button.
 
 == Description ==
 
-Easy Author Avatar Image gives you the option do you exactly that -- easily add an author image to your profile page. Once you install this plugin, you'll have a new option in the Your Profile tab (under Users) called Profile Picture, complete with a media uploader box that allows you to upload your very own author picture. 
+Easy Author Avatar Image gives you the option do you exactly that -- easily add an author image to your profile page. Once you install this plugin, you'll have a new option in the Your Profile tab (under Users) called Profile Picture, complete with a media upload box that allows you to upload your very own author picture. 
 
 Whether you call it an avatar, an author image, or an author picture, Easy Author Avatar Image is a "Works Out Of The Box" solution to a common problem.
 
 = What's Next =
 
-If you find this plugin useful , please leave a good rating and consider checking out my other plugins:
+If you find this plugin useful, please leave a good rating and consider checking out my other plugins:
 
 * <a href="https://wordpress.org/plugins/enhanced-comment-validation/" rel="friend" title="Enhanced Comment Validation">Enhanced Comment Validation</a> - Setup a comment validation for comment form.
 
@@ -67,11 +67,23 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 3. Upload Custom Avatar Image
 
 == Changelog ==
+= 1.2 =
+* Fixed: Frontend warning message for avatar image.
+
+= 1.1 =
+* Added: Added compatibility for latest WordPress version of 5.9.1
+* Fixed: Allow only image in Media selection. Props @ravipatel.
+* Fixed: Optimize some codes.
 
 = 1.0 =
-* Released.
+* Initial release.
 
 == Upgrade Notice ==
+= 1.2 =
+* Fixed: Frontend warning message for avatar image.
+
+= 1.1 =
+Check latest WP version compatibility and allow only image in media upload.
 
 = 1.0 =
-* Initial version
+Initial release.
