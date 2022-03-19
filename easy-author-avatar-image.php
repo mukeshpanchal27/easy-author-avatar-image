@@ -26,7 +26,8 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			add_action( 'edit_user_profile_update', [ $this, 'author_save_custom_img' ] );
 			add_filter( 'get_avatar', [ $this, 'get_easy_author_image' ], 10, 5 );
 			add_action( 'admin_menu', [ $this, 'admin_menu_page' ] );
-            add_action( 'user_edit_form_tag', array( $this, 'easy_author_avatar_image_edit_form_tag' ) );
+            add_filter( 'admin_body_class', [ $this,'easy_author_avatar_image_admin_classes' ] );
+            add_action( 'user_edit_form_tag', [ $this, 'easy_author_avatar_image_edit_form_tag' ] );
 		}        
 
 		public function enqueue_styles_scripts() {
@@ -105,6 +106,30 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
         public function easy_author_avatar_image_edit_form_tag() {
             echo 'enctype="multipart/form-data"';
         }
+
+        function easy_author_avatar_image_admin_classes( $classes ) {
+            global $pagenow;
+
+            $easy_author_avatar_image_option = get_option( 'easy_author_avatar_image_option' );
+            if ( isset( $easy_author_avatar_image_option['_enable'] ) && $easy_author_avatar_image_option['_enable'] === 'yes' ) {
+                
+                $user = wp_get_current_user();
+                $role = $user->roles[0];
+                
+                if ( isset( $easy_author_avatar_image_option['_enable_role'][$role] ) && $easy_author_avatar_image_option['_enable_role'][$role] !== '' ) {
+                    
+                    if ($pagenow == 'profile.php') {
+                    
+                        $classes .= ' easy_author_avatar_image';
+             
+                        return $classes;
+                    }
+                }
+               
+            }                    
+        }
+         
+        
 
         public function easy_author_avatar_image_get_role_names() {
 
