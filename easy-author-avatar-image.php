@@ -12,12 +12,10 @@ Text Domain: easy-author-avatar-image
 
 if ( !class_exists( 'easy_author_avatar_image' ) ) {
 	class easy_author_avatar_image {
-		private $plugin_name;
-		private $version;
+		private $plugin_name = 'easy-author-avatar-image';
+		private $version = '1.4';
 
 		public function __construct() {
-			$this->plugin_name = 'easy-author-avatar-image';
-			$this->version = '1.4';
 			register_setting( 'easy_author_avatar_image_settings', 'easy_author_avatar_image_option' ); // phpcs:ignore PluginCheck.CodeAnalysis.SettingSanitization.register_settingMissing
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles_scripts' ] );
 			add_action( 'show_user_profile', [ $this, 'admin_author_img_upload' ] );
@@ -26,6 +24,12 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			add_action( 'edit_user_profile_update', [ $this, 'author_save_custom_img' ] );
 			add_filter( 'get_avatar', [ $this, 'get_easy_author_image' ], 10, 5 );
 			add_action( 'admin_menu', [ $this, 'admin_menu_page' ] );
+
+			add_action( 'wp_head', [ $this, 'eaai_render_generator' ] );
+		}
+
+		function eaai_render_generator(): void {
+			echo '<meta name="generator" content="easy-author-avatar-image ' . esc_attr( $this->version ) . '">' . "\n";
 		}
 
 		public function enqueue_styles_scripts() {
