@@ -1,10 +1,10 @@
 === Easy Author Avatar Image ===
 Contributors: mukesh27
-Tags: avatar, user profile, gravatar, custom profile photo, custom profile picture, profile photo, profile picture, author image, author photo
+Tags: avatar, user profile, gravatar, custom profile photo, profile
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Requires at least: 5.6
-Tested up to: 6.4
-Requires PHP: 7.0
+Tested up to: 6.8
+Requires PHP: 7.2
 Stable tag: 1.3
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
