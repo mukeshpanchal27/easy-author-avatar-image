@@ -1,0 +1,11 @@
+/.git export-ignore
+/.github export-ignore
+/.wordpress-org export-ignore
+
+/*.DS_store export-ignore
+/.DS_store? export-ignore
+
+/README.md export-ignore
+
+/.gitattributes export-ignore
+/.gitignore export-ignore
