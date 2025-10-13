@@ -1,14 +1,16 @@
 <?php
-/*
-Plugin Name: Easy Author Avatar Image
-Description: Upload an author image right from your profile page with the click of a button.
-Version: 1.4
-Author: Mukesh Panchal
-Author URI: https://mukeshpanchal27.com/
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-Text Domain: easy-author-avatar-image
-*/
+/**
+ * Plugin Name: Easy Author Avatar Image
+ * Description: Upload an author image right from your profile page with the click of a button.
+ * Version: 1.4
+ * Author: Mukesh Panchal
+ * Author URI: https://mukeshpanchal.com/
+ * Requires at least: 6.8
+ * Requires PHP: 7.2
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * Text Domain: easy-author-avatar-image
+ */
 
 if ( !class_exists( 'easy_author_avatar_image' ) ) {
 	class easy_author_avatar_image {
