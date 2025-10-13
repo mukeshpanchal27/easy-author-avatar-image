@@ -2,7 +2,7 @@
 /*
 Plugin Name: Easy Author Avatar Image
 Description: Upload an author image right from your profile page with the click of a button
-Version: 1.2
+Version: 1.3
 Author: Mukesh Panchal
 Author URI: https://mukeshpanchal27.com/
 Text Domain: easy-author-avatar-image
@@ -15,7 +15,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 		public function __construct() {
 			$this->plugin_name = 'easy-author-avatar-image';
-			$this->version = '1.2';
+			$this->version = '1.3';
 			register_setting( 'easy_author_avatar_image_settings', 'easy_author_avatar_image_option' );
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles_scripts' ] );
 			add_action( 'show_user_profile', [ $this, 'admin_author_img_upload' ] );
@@ -28,7 +28,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 		public function enqueue_styles_scripts() {
 
-			$easy_author_avatar_image_option = get_option( 'easy_author_avatar_image_option' );
+			$easy_author_avatar_image_option     = get_option( 'easy_author_avatar_image_option' );
 			$easy_author_avatar_image_option_set = isset( $easy_author_avatar_image_option ) ? $easy_author_avatar_image_option : '';
 
 			if ( $easy_author_avatar_image_option_set ) {
@@ -42,11 +42,11 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 					$this->plugin_name,
 					'easy_author_avatar_image',
 					array(
-						'_media_title' => __( 'Choose Image: Default Avatar', 'easy-author-avatar-image' ),
-						'_media_button_title' => __( 'Select', 'easy-author-avatar-image' ),
+						'_media_title'           => __( 'Choose Image: Default Avatar', 'easy-author-avatar-image' ),
+						'_media_button_title'    => __( 'Select', 'easy-author-avatar-image' ),
 						'_delete_button_conform' => __( 'Are You Sure To Remove Profile Image', 'easy-author-avatar-image' ),
-						'_upload_button_text' => __( 'Upload New Profile Picture', 'easy-author-avatar-image' ),
-						'_change_button_text' => __( 'Change Profile Picture', 'easy-author-avatar-image' ),
+						'_upload_button_text'    => __( 'Upload New Profile Picture', 'easy-author-avatar-image' ),
+						'_change_button_text'    => __( 'Change Profile Picture', 'easy-author-avatar-image' ),
 					)
 				);
 			}
@@ -98,19 +98,19 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 		public function admin_author_img_upload( $user ) {
 
-			$easy_author_avatar_image_option = get_option( 'easy_author_avatar_image_option' );
+			$easy_author_avatar_image_option     = get_option( 'easy_author_avatar_image_option' );
 			$easy_author_avatar_image_option_set = isset( $easy_author_avatar_image_option ) ? $easy_author_avatar_image_option : '';
 
-			if( $easy_author_avatar_image_option_set ) {
-				$avatar = get_user_meta( $user->ID, 'easy-author-avatar-profile-image', true );
+			if ( $easy_author_avatar_image_option_set ) {
+				$avatar     = get_user_meta( $user->ID, 'easy-author-avatar-profile-image', true );
 				$avatar_url = wp_get_attachment_image_url( $avatar );
 
-				$button_class = ( ! $avatar_url ) ? ' easy-author-avatar-image-hide': "";
+				$button_class = ! $avatar_url ? ' easy-author-avatar-image-hide': '';
 				?>
 
 				<div class="easy-author-avatar-image-upload-wrap">
 					<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset( $avatar ) ? esc_attr( $avatar ) : ''; ?>">
-					<h3><?php _e('Easy Author Avatar Image', 'easy-author-avatar-image') ?></h3>
+					<h3><?php _e('Easy Author Avatar Image', 'easy-author-avatar-image'); ?></h3>
 
 					<table class="easy-author-avatar-image-form-table">
 						<tbody>
@@ -144,7 +144,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 		public function author_save_custom_img( $user_id ) {
 
-			if ( !current_user_can( 'edit_user', $user_id ) ) {
+			if ( ! current_user_can( 'edit_user', $user_id ) ) {
 				return false;
 			}
 			update_user_meta( $user_id, 'easy-author-avatar-profile-image', sanitize_text_field( $_POST['easy-author-avatar-image-id'] ) );
@@ -179,7 +179,6 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 					$avatar = "<img alt='".esc_attr( $alt )."' src='".esc_url( $avatar_url )."' class='avatar avatar-".esc_attr( $size )." photo' height='".esc_attr( $size )."' width='".esc_attr( $size )."' />";
 				}
 			}
-
 			return $avatar;
 		}
 	}
