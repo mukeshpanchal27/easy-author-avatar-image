@@ -68,6 +68,7 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 
 = 1.4 =
 * Added: Added compatibility for latest WordPress version of 6.8
+* Fix: PCP issues
 
 = 1.3 =
 * Added: Added compatibility for latest WordPress version of 6.4
