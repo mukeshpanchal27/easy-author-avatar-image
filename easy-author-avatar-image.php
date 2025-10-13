@@ -12,7 +12,7 @@
  * Text Domain: easy-author-avatar-image
  */
 
-if ( !class_exists( 'easy_author_avatar_image' ) ) {
+if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 	class easy_author_avatar_image {
 		private $plugin_name = 'easy-author-avatar-image';
 		private $version = '1.4';
@@ -30,7 +30,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			add_action( 'wp_head', [ $this, 'eaai_render_generator' ] );
 		}
 
-		function eaai_render_generator(): void {
+		public function eaai_render_generator(): void {
 			echo '<meta name="generator" content="easy-author-avatar-image ' . esc_attr( $this->version ) . '">' . "\n";
 		}
 
