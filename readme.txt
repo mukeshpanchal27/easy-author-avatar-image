@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Requires at least: 5.6
 Tested up to: 6.8
 Requires PHP: 7.2
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -67,6 +67,10 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 3. Upload Custom Avatar Image
 
 == Changelog ==
+
+= 1.4 =
+* Added: Added compatibility for latest WordPress version of 6.8
+
 = 1.3 =
 * Added: Added compatibility for latest WordPress version of 6.4
 
@@ -84,9 +88,3 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 == Upgrade Notice ==
 = 1.2 =
 * Fixed: Frontend warning message for avatar image.
-
-= 1.1 =
-Check latest WP version compatibility and allow only image in media upload.
-
-= 1.0 =
-Initial release.

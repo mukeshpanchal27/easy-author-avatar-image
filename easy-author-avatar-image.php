@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Easy Author Avatar Image
-Description: Upload an author image right from your profile page with the click of a button
-Version: 1.3
+Description: Upload an author image right from your profile page with the click of a button.
+Version: 1.4
 Author: Mukesh Panchal
 Author URI: https://mukeshpanchal27.com/
 Text Domain: easy-author-avatar-image
@@ -15,7 +15,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 		public function __construct() {
 			$this->plugin_name = 'easy-author-avatar-image';
-			$this->version = '1.3';
+			$this->version = '1.4';
 			register_setting( 'easy_author_avatar_image_settings', 'easy_author_avatar_image_option' );
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles_scripts' ] );
 			add_action( 'show_user_profile', [ $this, 'admin_author_img_upload' ] );
