@@ -112,7 +112,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 				<div class="easy-author-avatar-image-upload-wrap">
 					<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset( $avatar ) ? esc_attr( $avatar ) : ''; ?>">
-					<h3><?php esc_html_e('Easy Author Avatar Image', 'easy-author-avatar-image'); ?></h3>
+					<h3><?php esc_html_e( 'Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></h3>
 
 					<table class="easy-author-avatar-image-form-table">
 						<tbody>
@@ -159,28 +159,29 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			$user = false;
 
 			if ( is_numeric( $id_or_email ) ) {
-
 				$id = (int) $id_or_email;
 				$user = get_user_by( 'id' , $id );
-
 			} elseif ( is_object( $id_or_email ) ) {
-				
 				if ( ! empty( $id_or_email->user_id ) ) {
 					$id = (int) $id_or_email->user_id;
 					$user = get_user_by( 'id' , $id );
 				}
-
 			} else {
 				$user = get_user_by( 'email', $id_or_email );
 			}
 
 			if ( $user && is_object( $user ) ) {
 				$get_avatar = get_user_meta( $user->ID, 'easy-author-avatar-profile-image', true );
-				$avatar_url = "";
-
 				if ( $get_avatar ) {
 					$avatar_url = wp_get_attachment_image_url( $get_avatar );
-					$avatar = "<img alt='".esc_attr( $alt )."' src='".esc_url( $avatar_url )."' class='avatar avatar-".esc_attr( $size )." photo' height='".esc_attr( $size )."' width='".esc_attr( $size )."' />";
+					$avatar = sprintf(
+						"<img alt='%s' src='%s' class='avatar avatar-%d photo' height='%d' width='%d' />",
+						esc_attr( $alt ),
+						esc_url( $avatar_url ),
+						esc_attr( $size ),
+						esc_attr( $size ),
+						esc_attr( $size )
+					);
 				}
 			}
 			return $avatar;
