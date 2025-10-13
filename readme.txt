@@ -1,13 +1,11 @@
 === Easy Author Avatar Image ===
 Contributors: mukesh27
-Tags: avatar, user profile, gravatar, custom profile photo, custom profile picture, profile photo, profile picture, author image, author photo
+Tags: avatar, user profile, gravatar, custom photo, profile
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
-Requires at least: 5.6
-Tested up to: 6.4
-Requires PHP: 7.0
-Stable tag: 1.3
-License: GPL-2.0+
-License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+Tested up to: 6.8
+Stable tag: 1.4
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Upload an author image right from your profile page with the click of a button.
 
@@ -67,6 +65,11 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 3. Upload Custom Avatar Image
 
 == Changelog ==
+
+= 1.4 =
+* Added: Added compatibility for latest WordPress version of 6.8
+* Fix: PCP issues
+
 = 1.3 =
 * Added: Added compatibility for latest WordPress version of 6.4
 
@@ -84,9 +87,3 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 == Upgrade Notice ==
 = 1.2 =
 * Fixed: Frontend warning message for avatar image.
-
-= 1.1 =
-Check latest WP version compatibility and allow only image in media upload.
-
-= 1.0 =
-Initial release.
