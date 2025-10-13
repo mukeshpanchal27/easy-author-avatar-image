@@ -1,0 +1,25 @@
+name: Deploy to WordPress.org
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        type: boolean
+        description: 'Debug mode (run without publishing).'
+        default: false
+
+permissions: {}
+
+jobs:
+  deploy:
+    name: Deploy Plugin
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+    - name: WordPress Plugin Deploy
+      uses: 10up/action-wordpress-plugin-deploy@2480306f6f693672726d08b5917ea114cb2825f7 # stable
+      with:
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || false }}
+      env:
+        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
