@@ -3,6 +3,10 @@ name: Deploy to WordPress.org
 on:
   workflow_dispatch:
     inputs:
+      plugin:
+        type: string
+        description: 'The version of the plugin to deploy'
+        required: true
       dry-run:
         type: boolean
         description: 'Debug mode (run without publishing).'
@@ -21,5 +25,6 @@ jobs:
       with:
           dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || false }}
       env:
+        VERSION: ${{ inputs.PLUGIN_VERSION }}
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
