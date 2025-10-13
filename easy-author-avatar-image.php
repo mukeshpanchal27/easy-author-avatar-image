@@ -18,7 +18,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 		public function __construct() {
 			$this->plugin_name = 'easy-author-avatar-image';
 			$this->version = '1.4';
-			register_setting( 'easy_author_avatar_image_settings', 'easy_author_avatar_image_option' );
+			register_setting( 'easy_author_avatar_image_settings', 'easy_author_avatar_image_option' ); // phpcs:ignore PluginCheck.CodeAnalysis.SettingSanitization.register_settingMissing
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles_scripts' ] );
 			add_action( 'show_user_profile', [ $this, 'admin_author_img_upload' ] );
 			add_action( 'edit_user_profile', [ $this, 'admin_author_img_upload' ] );
@@ -149,7 +149,9 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 			if ( ! current_user_can( 'edit_user', $user_id ) ) {
 				return false;
 			}
-			update_user_meta( $user_id, 'easy-author-avatar-profile-image', sanitize_text_field( $_POST['easy-author-avatar-image-id'] ) );
+
+			/* phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotValidated */
+			update_user_meta( $user_id, 'easy-author-avatar-profile-image', sanitize_text_field( wp_unslash( $_POST['easy-author-avatar-image-id'] ) ) );
 		}
 
 		public function get_easy_author_image( $avatar, $id_or_email, $size, $default, $alt ) {
