@@ -5,6 +5,8 @@ Description: Upload an author image right from your profile page with the click 
 Version: 1.4
 Author: Mukesh Panchal
 Author URI: https://mukeshpanchal27.com/
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 Text Domain: easy-author-avatar-image
 */
 
@@ -73,18 +75,18 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 					<tbody>
 						<tr>
 							<th scope="row">
-								<label for="easy-author-avatar-image-lable"><?php _e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
+								<label for="easy-author-avatar-image-lable"><?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
 							</th>
 							<td>
 								<fieldset>
 									<legend class="screen-reader-text">
 										<span>
-											<?php _e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?>
+											<?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?>
 										</span>
 									</legend>
 									<label for="easy_author_avatar_image_option">
 										<input name="easy_author_avatar_image_option[_enable]" id="easy_author_avatar_image_option" type="checkbox" value="yes" <?php echo ( isset( $easy_author_avatar_image_option['_enable'] ) && ( 'yes' == $easy_author_avatar_image_option['_enable'] ) ) ? ' checked="checked"' : ''; ?> />
-										<?php _e( 'Enable Profile Section', 'easy-author-avatar-image' ); ?>
+										<?php esc_html_e( 'Enable Profile Section', 'easy-author-avatar-image' ); ?>
 									</label>
 								</fieldset>
 							</td>
@@ -110,12 +112,12 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 
 				<div class="easy-author-avatar-image-upload-wrap">
 					<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset( $avatar ) ? esc_attr( $avatar ) : ''; ?>">
-					<h3><?php _e('Easy Author Avatar Image', 'easy-author-avatar-image'); ?></h3>
+					<h3><?php esc_html_e('Easy Author Avatar Image', 'easy-author-avatar-image'); ?></h3>
 
 					<table class="easy-author-avatar-image-form-table">
 						<tbody>
 							<tr class="easy-author-avatar-image-user-profile-picture">
-								<th><?php _e( 'Profile Picture', 'easy-author-avatar-image' ); ?></th>
+								<th><?php esc_html_e( 'Profile Picture', 'easy-author-avatar-image' ); ?></th>
 								<td>
 									<img class="avatar avatar-96 photo easy-author-avatar-img<?php echo esc_attr( $button_class ); ?>" id="easy-author-avatar-image-custom" src="<?php echo isset( $avatar_url ) ? esc_url( $avatar_url ) : ''; ?>" width="96" height="96" alt="" />
 
@@ -124,14 +126,14 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 										<button type="button" class="button easy-author-avatar-image-upload" id="easy-author-avatar-image-upload">
 											<?php
 												if ( $avatar_url ) {
-													echo __( 'Change Profile Picture', 'easy-author-avatar-image' );
+													echo esc_html__( 'Change Profile Picture', 'easy-author-avatar-image' );
 												} else {
-													echo __( 'Upload New Profile Picture', 'easy-author-avatar-image' );
+													echo esc_html__( 'Upload New Profile Picture', 'easy-author-avatar-image' );
 												}
 											?>
 										</button>
 										<button type="button" id="easy-author-avatar-image-delete-btn" class="button easy-author-avatar-image-remove <?php echo esc_attr( $button_class ); ?>">
-											<?php echo _e( 'Delete profile picture', 'easy-author-avatar-image' ); ?>
+											<?php esc_html_e( 'Delete profile picture', 'easy-author-avatar-image' ); ?>
 										</button>
 									</div>
 								</td>
