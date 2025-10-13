@@ -24,7 +24,7 @@ jobs:
       uses: 10up/action-wordpress-plugin-deploy@stable
       with:
           dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run || false }}
-          VERSION: ${{ inputs.plugin }}
       env:
+        VERSION: ${{ inputs.plugin }}
         SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
         SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
