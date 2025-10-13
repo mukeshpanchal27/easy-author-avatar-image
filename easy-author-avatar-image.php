@@ -75,7 +75,7 @@ if ( !class_exists( 'easy_author_avatar_image' ) ) {
 					<tbody>
 						<tr>
 							<th scope="row">
-								<label for="easy-author-avatar-image-lable"><?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
+								<label for="easy-author-avatar-image-label"><?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
 							</th>
 							<td>
 								<fieldset>
