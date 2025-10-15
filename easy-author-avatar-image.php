@@ -25,7 +25,6 @@ if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 			add_action( 'personal_options_update', [ $this, 'author_save_custom_img' ] );
 			add_action( 'edit_user_profile_update', [ $this, 'author_save_custom_img' ] );
 			add_filter( 'get_avatar', [ $this, 'get_easy_author_image' ], 10, 5 );
-			add_action( 'admin_menu', [ $this, 'admin_menu_page' ] );
 
 			add_action( 'wp_head', [ $this, 'eaai_render_generator' ] );
 		}
@@ -58,50 +57,6 @@ if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 					)
 				);
 			}
-		}
-
-		public function admin_menu_page() {
-			add_menu_page(
-				__( 'Easy Author Avatar Image', 'easy-author-avatar-image' ),
-				__( 'Easy Author Avatar Image Settings', 'easy-author-avatar-image' ),
-				'manage_options',
-				'easy-author-avatar-image',
-				array( $this, 'easy_author_avatar_image_page_callback' ),
-				'dashicons-businessman'
-			);
-		}
-
-		public function easy_author_avatar_image_page_callback() { ?>
-			<form method="post" action="options.php">
-				<?php
-					settings_fields( 'easy_author_avatar_image_settings' );
-					$easy_author_avatar_image_option = get_option( 'easy_author_avatar_image_option' );
-				?>
-				<table class="form-table">
-					<tbody>
-						<tr>
-							<th scope="row">
-								<label for="easy-author-avatar-image-label"><?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
-							</th>
-							<td>
-								<fieldset>
-									<legend class="screen-reader-text">
-										<span>
-											<?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?>
-										</span>
-									</legend>
-									<label for="easy_author_avatar_image_option">
-										<input name="easy_author_avatar_image_option[_enable]" id="easy_author_avatar_image_option" type="checkbox" value="yes" <?php echo ( isset( $easy_author_avatar_image_option['_enable'] ) && ( 'yes' == $easy_author_avatar_image_option['_enable'] ) ) ? ' checked="checked"' : ''; ?> />
-										<?php esc_html_e( 'Enable Profile Section', 'easy-author-avatar-image' ); ?>
-									</label>
-								</fieldset>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<?php submit_button( __( 'Save Changes', 'easy-author-avatar-image' ) ); ?>
-			</form>
-		<?php
 		}
 
 		public function admin_author_img_upload( $user ) {
