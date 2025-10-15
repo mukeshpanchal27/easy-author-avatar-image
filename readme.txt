@@ -3,7 +3,7 @@ Contributors: mukesh27
 Tags: avatar, user profile, gravatar, custom photo, profile
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Tested up to: 6.8
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
