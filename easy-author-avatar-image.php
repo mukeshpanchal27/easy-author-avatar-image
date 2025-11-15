@@ -26,6 +26,8 @@ if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 			add_filter( 'get_avatar', [ $this, 'get_easy_author_image' ], 10, 5 );
 
 			add_action( 'wp_head', [ $this, 'eaai_render_generator' ] );
+
+			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), [ $this, 'eaai_plugin_action_links_add_settings' ] );
 		}
 
 		public function eaai_render_generator(): void {
@@ -64,7 +66,7 @@ if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 			$button_class = ! $avatar_url ? ' easy-author-avatar-image-hide': '';
 			?>
 
-			<div class="easy-author-avatar-image-upload-wrap">
+			<div class="easy-author-avatar-image-upload-wrap" id="easy-author-avatar-image-upload-wrap">
 				<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset( $avatar ) ? esc_attr( $avatar ) : ''; ?>">
 				<h2><?php esc_html_e( 'Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></h2>
 
@@ -139,6 +141,28 @@ if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 				}
 			}
 			return $avatar;
+		}
+
+		public function eaai_plugin_action_links_add_settings( $links ) {
+			if ( ! is_array( $links ) ) {
+				return $links;
+			}
+
+			if ( ! current_user_can( 'edit_user', get_current_user_id() ) ) {
+				return $links;
+			}
+
+			// Add link as the first plugin action link.
+			$settings_link = sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( get_edit_profile_url() . '#easy-author-avatar-image-upload-wrap' ),
+				esc_html__( 'Add Profile Picture', 'easy-author-avatar-image' )
+			);
+
+			return array_merge(
+				array( 'settings' => $settings_link ),
+				$links
+			);
 		}
 	}
 
