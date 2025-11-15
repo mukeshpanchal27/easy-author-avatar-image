@@ -66,6 +66,11 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 
 == Changelog ==
 
+= 1.5 =
+* Added: Settings link on the Plugins screen
+* Added: uninstall.php to clean up data on uninstall
+* Removed: Onboarding setting page
+
 = 1.4 =
 * Added: Added compatibility for latest WordPress version of 6.8
 * Fix: PCP issues
