@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Easy Author Avatar Image
  * Description: Upload an author image right from your profile page with the click of a button.
- * Version: 1.4
+ * Version: 1.5
  * Author: Mukesh Panchal
  * Author URI: https://mukeshpanchal.com/
  * Requires at least: 6.8
@@ -15,19 +15,19 @@
 if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 	class easy_author_avatar_image {
 		private $plugin_name = 'easy-author-avatar-image';
-		private $version = '1.4';
+		private $version = '1.5';
 
 		public function __construct() {
-			register_setting( 'easy_author_avatar_image_settings', 'easy_author_avatar_image_option' ); // phpcs:ignore PluginCheck.CodeAnalysis.SettingSanitization.register_settingMissing
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles_scripts' ] );
 			add_action( 'show_user_profile', [ $this, 'admin_author_img_upload' ] );
 			add_action( 'edit_user_profile', [ $this, 'admin_author_img_upload' ] );
 			add_action( 'personal_options_update', [ $this, 'author_save_custom_img' ] );
 			add_action( 'edit_user_profile_update', [ $this, 'author_save_custom_img' ] );
 			add_filter( 'get_avatar', [ $this, 'get_easy_author_image' ], 10, 5 );
-			add_action( 'admin_menu', [ $this, 'admin_menu_page' ] );
 
 			add_action( 'wp_head', [ $this, 'eaai_render_generator' ] );
+
+			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), [ $this, 'eaai_plugin_action_links_add_settings' ] );
 		}
 
 		public function eaai_render_generator(): void {
@@ -35,119 +35,69 @@ if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 		}
 
 		public function enqueue_styles_scripts() {
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url(__FILE__) . 'css/easy-author-avatar-image.css', array(), $this->version, 'all' );
 
-			$easy_author_avatar_image_option     = get_option( 'easy_author_avatar_image_option' );
-			$easy_author_avatar_image_option_set = isset( $easy_author_avatar_image_option ) ? $easy_author_avatar_image_option : '';
+			wp_enqueue_media();
 
-			if ( $easy_author_avatar_image_option_set ) {
-				wp_enqueue_style( $this->plugin_name, plugin_dir_url(__FILE__) . 'css/easy-author-avatar-image.css', array(), $this->version, 'all' );
-
-				wp_enqueue_media();
-
-				wp_enqueue_script( $this->plugin_name, plugin_dir_url(__FILE__) . 'js/easy-author-avatar-image.js', array( 'jquery' ), $this->version, false );
-				
-				wp_localize_script(
-					$this->plugin_name,
-					'easy_author_avatar_image',
-					array(
-						'_media_title'           => __( 'Choose Image: Default Avatar', 'easy-author-avatar-image' ),
-						'_media_button_title'    => __( 'Select', 'easy-author-avatar-image' ),
-						'_delete_button_conform' => __( 'Are You Sure To Remove Profile Image', 'easy-author-avatar-image' ),
-						'_upload_button_text'    => __( 'Upload New Profile Picture', 'easy-author-avatar-image' ),
-						'_change_button_text'    => __( 'Change Profile Picture', 'easy-author-avatar-image' ),
-					)
-				);
-			}
-		}
-
-		public function admin_menu_page() {
-			add_menu_page(
-				__( 'Easy Author Avatar Image', 'easy-author-avatar-image' ),
-				__( 'Easy Author Avatar Image Settings', 'easy-author-avatar-image' ),
-				'manage_options',
-				'easy-author-avatar-image',
-				array( $this, 'easy_author_avatar_image_page_callback' ),
-				'dashicons-businessman'
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url(__FILE__) . 'js/easy-author-avatar-image.js', array( 'jquery' ), $this->version, false );
+			
+			wp_localize_script(
+				$this->plugin_name,
+				'easy_author_avatar_image',
+				array(
+					'_media_title'           => __( 'Choose Image: Default Avatar', 'easy-author-avatar-image' ),
+					'_media_button_title'    => __( 'Select', 'easy-author-avatar-image' ),
+					'_delete_button_conform' => __( 'Are You Sure To Remove Profile Image', 'easy-author-avatar-image' ),
+					'_upload_button_text'    => __( 'Upload New Profile Picture', 'easy-author-avatar-image' ),
+					'_change_button_text'    => __( 'Change Profile Picture', 'easy-author-avatar-image' ),
+				)
 			);
-		}
-
-		public function easy_author_avatar_image_page_callback() { ?>
-			<form method="post" action="options.php">
-				<?php
-					settings_fields( 'easy_author_avatar_image_settings' );
-					$easy_author_avatar_image_option = get_option( 'easy_author_avatar_image_option' );
-				?>
-				<table class="form-table">
-					<tbody>
-						<tr>
-							<th scope="row">
-								<label for="easy-author-avatar-image-label"><?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></label>
-							</th>
-							<td>
-								<fieldset>
-									<legend class="screen-reader-text">
-										<span>
-											<?php esc_html_e( 'Enable Easy Author Avatar Image', 'easy-author-avatar-image' ); ?>
-										</span>
-									</legend>
-									<label for="easy_author_avatar_image_option">
-										<input name="easy_author_avatar_image_option[_enable]" id="easy_author_avatar_image_option" type="checkbox" value="yes" <?php echo ( isset( $easy_author_avatar_image_option['_enable'] ) && ( 'yes' == $easy_author_avatar_image_option['_enable'] ) ) ? ' checked="checked"' : ''; ?> />
-										<?php esc_html_e( 'Enable Profile Section', 'easy-author-avatar-image' ); ?>
-									</label>
-								</fieldset>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<?php submit_button( __( 'Save Changes', 'easy-author-avatar-image' ) ); ?>
-			</form>
-		<?php
 		}
 
 		public function admin_author_img_upload( $user ) {
 
-			$easy_author_avatar_image_option     = get_option( 'easy_author_avatar_image_option' );
-			$easy_author_avatar_image_option_set = isset( $easy_author_avatar_image_option ) ? $easy_author_avatar_image_option : '';
+			if ( ! current_user_can( 'edit_user', $user->ID ) || ! current_user_can( 'upload_files' ) ) {
+				return false;
+			}
 
-			if ( $easy_author_avatar_image_option_set ) {
-				$avatar     = get_user_meta( $user->ID, 'easy-author-avatar-profile-image', true );
-				$avatar_url = wp_get_attachment_image_url( $avatar );
+			$avatar     = get_user_meta( $user->ID, 'easy-author-avatar-profile-image', true );
+			$avatar_url = wp_get_attachment_image_url( $avatar );
 
-				$button_class = ! $avatar_url ? ' easy-author-avatar-image-hide': '';
-				?>
+			$button_class = ! $avatar_url ? ' easy-author-avatar-image-hide': '';
+			?>
 
-				<div class="easy-author-avatar-image-upload-wrap">
-					<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset( $avatar ) ? esc_attr( $avatar ) : ''; ?>">
-					<h3><?php esc_html_e( 'Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></h3>
+			<div class="easy-author-avatar-image-upload-wrap" id="easy-author-avatar-image-upload-wrap">
+				<input type="hidden" id="easy-author-avatar-image-id" class="easy-author-avatar-image-input" name="easy-author-avatar-image-id" value="<?php echo isset( $avatar ) ? esc_attr( $avatar ) : ''; ?>">
+				<h2><?php esc_html_e( 'Easy Author Avatar Image', 'easy-author-avatar-image' ); ?></h2>
 
-					<table class="easy-author-avatar-image-form-table">
-						<tbody>
-							<tr class="easy-author-avatar-image-user-profile-picture">
-								<th><?php esc_html_e( 'Profile Picture', 'easy-author-avatar-image' ); ?></th>
-								<td>
-									<img class="avatar avatar-96 photo easy-author-avatar-img<?php echo esc_attr( $button_class ); ?>" id="easy-author-avatar-image-custom" src="<?php echo isset( $avatar_url ) ? esc_url( $avatar_url ) : ''; ?>" width="96" height="96" alt="" />
+				<table class="easy-author-avatar-image-form-table">
+					<tbody>
+						<tr class="easy-author-avatar-image-user-profile-picture">
+							<th><?php esc_html_e( 'Profile Picture', 'easy-author-avatar-image' ); ?></th>
+							<td>
+								<img class="avatar avatar-96 photo easy-author-avatar-img<?php echo esc_attr( $button_class ); ?>" id="easy-author-avatar-image-custom" src="<?php echo isset( $avatar_url ) ? esc_url( $avatar_url ) : ''; ?>" width="96" height="96" alt="" />
 
-									<div class="easy-author-avatar-image-upload-action">
+								<div class="easy-author-avatar-image-upload-action">
 
-										<button type="button" class="button easy-author-avatar-image-upload" id="easy-author-avatar-image-upload">
-											<?php
-												if ( $avatar_url ) {
-													echo esc_html__( 'Change Profile Picture', 'easy-author-avatar-image' );
-												} else {
-													echo esc_html__( 'Upload New Profile Picture', 'easy-author-avatar-image' );
-												}
-											?>
-										</button>
-										<button type="button" id="easy-author-avatar-image-delete-btn" class="button easy-author-avatar-image-remove <?php echo esc_attr( $button_class ); ?>">
-											<?php esc_html_e( 'Delete profile picture', 'easy-author-avatar-image' ); ?>
-										</button>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			<?php }
+									<button type="button" class="button easy-author-avatar-image-upload" id="easy-author-avatar-image-upload">
+										<?php
+											if ( $avatar_url ) {
+												echo esc_html__( 'Change Profile Picture', 'easy-author-avatar-image' );
+											} else {
+												echo esc_html__( 'Upload New Profile Picture', 'easy-author-avatar-image' );
+											}
+										?>
+									</button>
+									<button type="button" id="easy-author-avatar-image-delete-btn" class="button easy-author-avatar-image-remove <?php echo esc_attr( $button_class ); ?>">
+										<?php esc_html_e( 'Delete profile picture', 'easy-author-avatar-image' ); ?>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		<?php
 		}
 
 		public function author_save_custom_img( $user_id ) {
@@ -191,6 +141,28 @@ if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 				}
 			}
 			return $avatar;
+		}
+
+		public function eaai_plugin_action_links_add_settings( $links ) {
+			if ( ! is_array( $links ) ) {
+				return $links;
+			}
+
+			if ( ! current_user_can( 'edit_user', get_current_user_id() ) ) {
+				return $links;
+			}
+
+			// Add link as the first plugin action link.
+			$settings_link = sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( get_edit_profile_url() . '#easy-author-avatar-image-upload-wrap' ),
+				esc_html__( 'Add Profile Picture', 'easy-author-avatar-image' )
+			);
+
+			return array_merge(
+				array( 'settings' => $settings_link ),
+				$links
+			);
 		}
 	}
 
