@@ -2,20 +2,22 @@
 /**
  * Plugin Name: Easy Author Avatar Image
  * Description: Upload an author image right from your profile page with the click of a button.
- * Version: 1.5
+ * Version: 1.5.1
  * Author: Mukesh Panchal
  * Author URI: https://mukeshpanchal.com/
  * Requires at least: 6.8
- * Requires PHP: 7.2
+ * Requires PHP: 7.4
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Text Domain: easy-author-avatar-image
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( ! class_exists( 'easy_author_avatar_image' ) ) {
 	class easy_author_avatar_image {
 		private $plugin_name = 'easy-author-avatar-image';
-		private $version = '1.5';
+		private $version = '1.5.1';
 
 		public function __construct() {
 			add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles_scripts' ] );
