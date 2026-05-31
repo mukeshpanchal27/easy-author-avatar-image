@@ -3,7 +3,7 @@ Contributors: mukesh27
 Tags: avatar, user profile, gravatar, custom photo, profile
 Donate link: https://www.paypal.com/paypalme/mukeshpanchal27
 Tested up to: 7.0
-Stable tag: 1.5
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,7 +11,7 @@ Upload an author image right from your profile page with the click of a button.
 
 == Description ==
 
-Easy Author Avatar Image gives you the option do you exactly that -- easily add an author image to your profile page. Once you install this plugin, you'll have a new option in the Your Profile tab (under Users) called Profile Picture, complete with a media upload box that allows you to upload your very own author picture. 
+Easy Author Avatar Image gives you the option do you exactly that - easily add an author image to your profile page. Once you install this plugin, you'll have a new option in the Your Profile tab (under Users) called Profile Picture, complete with a media upload box that allows you to upload your very own author picture. 
 
 Whether you call it an avatar, an author image, or an author picture, Easy Author Avatar Image is a "Works Out Of The Box" solution to a common problem.
 
@@ -46,7 +46,7 @@ Yes, It is compatible with the latest WordPress.
 
 = Can I use this plugin in my language? =
 
-Yes. this plugin is translatedÂ ready. But If your language is not available you can make one. If you want to help us to translate this plugin to your language you are welcome.
+Yes. this plugin is translated ready. But If your language is not available you can make one. If you want to help us to translate this plugin to your language you are welcome.
 
 = Where can I suggest a new feature or report a bug? =
 
@@ -63,6 +63,11 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 1. Upload Custom Avatar Image
 
 == Changelog ==
+
+= 1.5.1 =
+* Added: Added compatibility for latest WordPress version of 7.0
+* Added: Bump minimum PHP 7.4
+* Fix: Fix errors shown by Plugin Check (PCP)
 
 = 1.5 =
 * Added: Settings link on the Plugins screen
@@ -86,7 +91,3 @@ In addition, if you like the plugin then I'd love for you to leave a review. Tel
 
 = 1.0 =
 * Initial release.
-
-== Upgrade Notice ==
-= 1.2 =
-* Fixed: Frontend warning message for avatar image.
