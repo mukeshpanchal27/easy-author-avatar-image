@@ -1,4 +1,4 @@
-#easy_author_avatar_image_delete_btn {
+#easy-author-avatar-image-delete-btn {
 	margin-left: 5px;
 }
 
@@ -26,8 +26,18 @@
 	vertical-align: middle;
 }
 
-.easy-author-avatar-image-hide, .form-table .user-profile-picture {
+/* Utility class toggled by the upload/delete buttons. Needs to win over the
+   .avatar rules core applies to the preview image. */
+.easy-author-avatar-image-hide {
 	display: none !important;
+}
+
+/* Hides core's own Profile Picture row so it isn't duplicated by this plugin's.
+   Core renders that row inline in wp-admin/user-edit.php with no hook to remove it
+   server-side, so CSS is the only option; the stylesheet is enqueued on profile.php
+   and user-edit.php only, so this rule no longer leaks onto other admin screens. */
+.form-table tr.user-profile-picture {
+	display: none;
 }
 
 .easy-author-avatar-img {
