@@ -9,7 +9,7 @@ Easy Author Avatar Image is a WordPress plugin that allows site administrators a
 - Upload custom avatar images for users
 - Supports multiple image formats
 - Integrates with WordPress user profile page
-- Option to display avatars in comments, posts, and author boxes
+- Replaces the default avatar wherever WordPress renders one, including comments, author boxes, and the admin
 - Fallback to default avatar if no custom image is set
 - Lightweight and easy to use
 
